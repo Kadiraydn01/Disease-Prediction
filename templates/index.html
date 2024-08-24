@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tahmin Uygulaması</title>
+    <style>
+        .box {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        </style>
+</head>
+<body class="box">
+    <h1>Verilerinizi Girin</h1>
+    <form method="POST" action="/predict" >
+        <label for="input1">Glucose:</label>
+        <input type="text" name="input1" required><br><br>
+        <label for="input2">Cholesterol:</label>
+        <input type="text" name="input2" required><br><br>
+        <label for="input3">Hemoglobin:</label>
+        <input type="text" name="input3" required><br><br>
+        <label for="input4">Platelets :</label>
+        <input type="text" name="input4" required><br><br>
+        <label for="input5">White Blood Cells :</label>
+        <input type="text" name="input5" required><br><br>
+        <label for="input6">Red Blood Cells :</label>
+        <input type="text" name="input6" required><br><br>
+        <label for="input7">Hematocrit :</label>
+        <input type="text" name="input7" required><br><br>
+        <label for="input8">Mean Corpuscular Volume :</label>
+        <input type="text" name="input8" required><br><br>
+        <label for="input9">Mean Corpuscular Hemoglobin :</label>
+        <input type="text" name="input9" required><br><br>
+        <label for="input10">Mean Corpuscular Hemoglobin Concentration :</label>
+        <input type="text" name="input10" required><br><br>
+        <label for="input11">Insulin :</label>
+        <input type="text" name="input11" required><br><br>
+        <label for="input12">BMI :</label>
+        <input type="text" name="input12" required><br><br>
+        <label for="input13">Systolic Blood Pressure :</label>
+        <input type="text" name="input13" required><br><br>
+        <label for="input14">Diastolic Blood Pressure :</label>
+        <input type="text" name="input14" required><br><br>
+        <label for="input15">Triglycerides :</label>
+        <input type="text" name="input15" required><br><br>
+        <label for="input16">HbA1c :</label>
+        <input type="text" name="input16" required><br><br>
+        <label for="input17">LDL Cholesterol :</label>
+        <input type="text" name="input17" required><br><br>
+        <label for="input18">HDL Cholesterol :</label>
+        <input type="text" name="input18" required><br><br>
+        <label for="input19">ALT :</label>
+        <input type="text" name="input19" required><br><br>
+        <label for="input20">AST :</label>
+        <input type="text" name="input20" required><br><br>
+        <label for="input21">Heart Rate :</label>
+        <input type="text" name="input21" required><br><br>
+        <label for="input22">Creatinine :</label>
+        <input type="text" name="input22" required><br><br>
+        <label for="input23">Troponin :</label>
+        <input type="text" name="input23" required><br><br>
+        <label for="input24">C-reactive Protein :</label>
+        <input type="text" name="input24" required><br><br>
+        
+        
+        <button type="submit">Tahmin Et</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Tahmin: {{ prediction }}</h2>
+        
+    {% endif %}
+</body>
+</html>
