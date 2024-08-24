@@ -30,10 +30,10 @@ def predict():
         data = request.form.to_dict()
         input_data = np.array([float(value) for value in data.values()])
         
-        # Veriyi ölçeklendirme
+        
         input_data_scaled = scaler.transform([input_data])
         
-        # Tahmini yapın
+        
         prediction = model.predict(input_data_scaled)[0]
         
         # Sınıf etiketini belirleyin
