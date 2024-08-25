@@ -1,3 +1,8 @@
 flask
 numpy
 gunicorn
+pandas
+scikit-learn
+seaborn
+matplotlib
+xgboost
