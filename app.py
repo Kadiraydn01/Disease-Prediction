@@ -39,7 +39,7 @@ def predict():
         # Sınıf etiketini belirleyin
         prediction_label = class_labels.get(prediction, "Unknown")
         
-        return render_template('index.html', prediction=prediction_label)
+        return render_template('result.html', prediction=prediction_label)
 
 if __name__ == '__main__':
     app.run(debug=True)

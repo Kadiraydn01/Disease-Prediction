@@ -4,102 +4,181 @@
     <meta charset="UTF-8">
     <title>Tahmin Uygulaması</title>
     <style>
-        .box {
-            width: 50%;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
         }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
         h1 {
             text-align: center;
+            margin-bottom: 20px;
+            color: #5f5dbd;
         }
+
         form {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
+
         label {
             margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #020438;
         }
-        input {
-            padding: 5px;
-            margin-bottom: 10px;
+
+        input[type="text"] {
+            padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f4f4ec;
         }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #5f5dbd;
+            background-color: #fae3e3;
+        }
+
         button {
-            padding: 10px;
+            grid-column: span 3;
+            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            text-align: center;
         }
+
         button:hover {
             background-color: #45a049;
         }
-        </style>
-</head>
-<body class="box">
-    <h1>Verilerinizi Girin</h1>
-    <form method="POST" action="/predict" >
-        <label for="input1">Glucose:</label>
-        <input type="text" name="input1" required><br><br>
-        <label for="input2">Cholesterol:</label>
-        <input type="text" name="input2" required><br><br>
-        <label for="input3">Hemoglobin:</label>
-        <input type="text" name="input3" required><br><br>
-        <label for="input4">Platelets :</label>
-        <input type="text" name="input4" required><br><br>
-        <label for="input5">White Blood Cells :</label>
-        <input type="text" name="input5" required><br><br>
-        <label for="input6">Red Blood Cells :</label>
-        <input type="text" name="input6" required><br><br>
-        <label for="input7">Hematocrit :</label>
-        <input type="text" name="input7" required><br><br>
-        <label for="input8">Mean Corpuscular Volume :</label>
-        <input type="text" name="input8" required><br><br>
-        <label for="input9">Mean Corpuscular Hemoglobin :</label>
-        <input type="text" name="input9" required><br><br>
-        <label for="input10">Mean Corpuscular Hemoglobin Concentration :</label>
-        <input type="text" name="input10" required><br><br>
-        <label for="input11">Insulin :</label>
-        <input type="text" name="input11" required><br><br>
-        <label for="input12">BMI :</label>
-        <input type="text" name="input12" required><br><br>
-        <label for="input13">Systolic Blood Pressure :</label>
-        <input type="text" name="input13" required><br><br>
-        <label for="input14">Diastolic Blood Pressure :</label>
-        <input type="text" name="input14" required><br><br>
-        <label for="input15">Triglycerides :</label>
-        <input type="text" name="input15" required><br><br>
-        <label for="input16">HbA1c :</label>
-        <input type="text" name="input16" required><br><br>
-        <label for="input17">LDL Cholesterol :</label>
-        <input type="text" name="input17" required><br><br>
-        <label for="input18">HDL Cholesterol :</label>
-        <input type="text" name="input18" required><br><br>
-        <label for="input19">ALT :</label>
-        <input type="text" name="input19" required><br><br>
-        <label for="input20">AST :</label>
-        <input type="text" name="input20" required><br><br>
-        <label for="input21">Heart Rate :</label>
-        <input type="text" name="input21" required><br><br>
-        <label for="input22">Creatinine :</label>
-        <input type="text" name="input22" required><br><br>
-        <label for="input23">Troponin :</label>
-        <input type="text" name="input23" required><br><br>
-        <label for="input24">C-reactive Protein :</label>
-        <input type="text" name="input24" required><br><br>
-        
-        
-        <button type="submit">Tahmin Et</button>
-    </form>
 
-    {% if prediction %}
-        <h2>Tahmin: {{ prediction }}</h2>
-        
-    {% endif %}
+        .prediction {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verilerinizi Girin</h1>
+        <form method="POST" action="/predict">
+            <!-- Sol Sütun -->
+            <div>
+                <label for="input1">Glucose:</label>
+                <input type="text" name="input1" required>
+                
+                <label for="input2">Cholesterol:</label>
+                <input type="text" name="input2" required>
+                
+                <label for="input3">Hemoglobin:</label>
+                <input type="text" name="input3" required>
+                
+                <label for="input4">Platelets:</label>
+                <input type="text" name="input4" required>
+                
+                <label for="input5">White Blood Cells:</label>
+                <input type="text" name="input5" required>
+                
+                <label for="input6">Red Blood Cells:</label>
+                <input type="text" name="input6" required>
+                
+                <label for="input7">Hematocrit:</label>
+                <input type="text" name="input7" required>
+                
+                <label for="input8">Mean Corpuscular Volume:</label>
+                <input type="text" name="input8" required>
+            </div>
+
+            <!-- Orta Sütun -->
+            <div>
+                <label for="input9">Mean Corpuscular Hemoglobin:</label>
+                <input type="text" name="input9" required>
+                
+                <label for="input10">MCH Concentration:</label>
+                <input type="text" name="input10" required>
+                
+                <label for="input11">Insulin:</label>
+                <input type="text" name="input11" required>
+                
+                <label for="input12">BMI:</label>
+                <input type="text" name="input12" required>
+                
+                <label for="input13">Systolic Blood Pressure:</label>
+                <input type="text" name="input13" required>
+                
+                <label for="input14">Diastolic Blood Pressure:</label>
+                <input type="text" name="input14" required>
+                
+                <label for="input15">Triglycerides:</label>
+                <input type="text" name="input15" required>
+                
+                <label for="input16">HbA1c:</label>
+                <input type="text" name="input16" required>
+            </div>
+
+            <!-- Sağ Sütun -->
+            <div>
+                <label for="input17">LDL Cholesterol:</label>
+                <input type="text" name="input17" required>
+                
+                <label for="input18">HDL Cholesterol:</label>
+                <input type="text" name="input18" required>
+                
+                <label for="input19">ALT:</label>
+                <input type="text" name="input19" required>
+                
+                <label for="input20">AST:</label>
+                <input type="text" name="input20" required>
+                
+                <label for="input21">Heart Rate:</label>
+                <input type="text" name="input21" required>
+                
+                <label for="input22">Creatinine:</label>
+                <input type="text" name="input22" required>
+                
+                <label for="input23">Troponin:</label>
+                <input type="text" name="input23" required>
+                
+                <label for="input24">C-reactive Protein:</label>
+                <input type="text" name="input24" required>
+            </div>
+            
+            <button type="submit">Tahmin Et</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">
+            <h2>Tahmin: {{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
